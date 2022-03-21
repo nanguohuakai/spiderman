@@ -1,9 +1,9 @@
 package main
 
 import (
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/core/pizza"
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/core/sso"
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/dto"
+	"spiderman/core/pizza"
+	"spiderman/core/sso"
+	"spiderman/dto"
 )
 
 type SpidermanInterface interface {

@@ -4,11 +4,11 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/dto"
 	"github.com/hashicorp/go-retryablehttp"
 	"io/ioutil"
 	"net"
 	"net/http"
+	"spiderman/dto"
 	"strings"
 	"time"
 )

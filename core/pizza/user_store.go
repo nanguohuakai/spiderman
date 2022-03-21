@@ -2,8 +2,8 @@ package pizza
 
 import (
 	"errors"
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/dto"
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/pkg/httpclient"
+	"spiderman/dto"
+	"spiderman/pkg/httpclient"
 )
 
 func (p *Client) GetEmployeeInfo(code string) ( dto.PizzaResponse, error) {

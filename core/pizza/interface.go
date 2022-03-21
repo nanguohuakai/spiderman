@@ -1,7 +1,7 @@
 package pizza
 
 import (
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/dto"
+	"spiderman/dto"
 )
 
 type PizzaInterface interface {

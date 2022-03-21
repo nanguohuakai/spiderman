@@ -1,4 +1,4 @@
-module git.100tal.com/jituan_xinxi_be/talent-spiderman-go
+module spiderman
 
 go 1.16
 

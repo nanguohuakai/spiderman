@@ -1,7 +1,7 @@
 package sso
 
 import (
-	"git.100tal.com/jituan_xinxi_be/talent-spiderman-go/dto"
+	"spiderman/dto"
 )
 
 type SsoInterface interface {
