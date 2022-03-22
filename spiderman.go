@@ -1,9 +1,9 @@
 package spiderman
 
 import (
-	"spiderman/core/pizza"
-	"spiderman/core/sso"
-	"spiderman/dto"
+	"github.com/nanguohuakai/spiderman/core/pizza"
+	"github.com/nanguohuakai/spiderman/core/sso"
+	"github.com/nanguohuakai/spiderman/dto"
 )
 
 type SpidermanInterface interface {

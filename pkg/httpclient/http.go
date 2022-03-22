@@ -5,10 +5,10 @@ import (
 	"encoding/json"
 	"errors"
 	"github.com/hashicorp/go-retryablehttp"
+	"github.com/nanguohuakai/spiderman/dto"
 	"io/ioutil"
 	"net"
 	"net/http"
-	"spiderman/dto"
 	"strings"
 	"time"
 )
