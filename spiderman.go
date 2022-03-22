@@ -1,4 +1,4 @@
-package main
+package spiderman
 
 import (
 	"spiderman/core/pizza"
