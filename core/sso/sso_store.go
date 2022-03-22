@@ -2,8 +2,8 @@ package sso
 
 import (
 	"errors"
-	"spiderman/dto"
-	"spiderman/pkg/httpclient"
+	"github.com/nanguohuakai/spiderman/dto"
+	"github.com/nanguohuakai/spiderman/pkg/httpclient"
 )
 
 func (s *Client) Verify(token string) ( dto.SsoVerifyResponse, error)  {

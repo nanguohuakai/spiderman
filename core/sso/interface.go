@@ -1,7 +1,7 @@
 package sso
 
 import (
-	"spiderman/dto"
+	"github.com/nanguohuakai/spiderman/dto"
 )
 
 type SsoInterface interface {

@@ -1,7 +1,7 @@
 package pizza
 
 import (
-	"spiderman/dto"
+	"github.com/nanguohuakai/spiderman/dto"
 )
 
 type PizzaInterface interface {
