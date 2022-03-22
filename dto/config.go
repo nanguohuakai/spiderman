@@ -8,3 +8,8 @@ type AppConf struct {
 	AppId       string `json:"appid,omitempty"`
 	AppKey      string `json:"appkey,omitempty"`
 }
+
+type SsoConf struct {
+	AppId       string `json:"appid"`
+	AppKey      string `json:"appkey"`
+}
