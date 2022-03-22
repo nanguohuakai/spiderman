@@ -5,7 +5,7 @@ import (
 )
 
 type SsoInterface interface {
-	Verify(token string) ( dto.SsoResponse, error)
+	Verify(token string) ( dto.SsoVerifyResponse, error)
 	JsConfig(url string) ( dto.SsoResponse, error)
 	Ticket() ( dto.SsoResponse, error)
 }

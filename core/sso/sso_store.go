@@ -6,9 +6,9 @@ import (
 	"spiderman/pkg/httpclient"
 )
 
-func (s *Client) Verify(token string) ( dto.SsoResponse, error)  {
+func (s *Client) Verify(token string) ( dto.SsoVerifyResponse, error)  {
 	u := "/api/v2/sso/verify?token=" + token + "&appid=" + s.Conf.AppId + "&appkey=" + s.Conf.AppKey
-	var output dto.SsoResponse
+	var output dto.SsoVerifyResponse
 
 	err := httpclient.Get(u, s.Conf, &output)
 
