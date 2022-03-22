@@ -1,4 +1,4 @@
-module github.com/nanguohuakai/spiderman
+module github.com/nanguohuakai/spiderman/v1
 
 go 1.16
 
