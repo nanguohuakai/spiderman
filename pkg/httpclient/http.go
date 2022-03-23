@@ -41,6 +41,8 @@ func init() {
 		return retryablehttp.DefaultRetryPolicy(ctx, resp, err)
 	}
 
+	retryClient.ErrorHandler = retryablehttp.PassthroughErrorHandler
+
 	httpClient = retryClient.StandardClient()
 }
 
