@@ -1,35 +1,59 @@
 package spiderman
 
 import (
+	"errors"
+	"github.com/nanguohuakai/spiderman/core/alert"
 	"github.com/nanguohuakai/spiderman/core/pizza"
 	"github.com/nanguohuakai/spiderman/core/sso"
 	"github.com/nanguohuakai/spiderman/dto"
 )
 
-type SpidermanInterface interface {
-	Pizza() pizza.PizzaInterface
-	Sso()   sso.SsoInterface
+type Spiderman interface {
+	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)
+	Sso(conf dto.SsoConf) (sso.SsoInterface, error)
+	Alert(conf dto.AlertConf) (alert.AlertInterface, error)
 }
 
 type SpidermanClient struct {
-	PizzaCore pizza.PizzaInterface
-	SsoCore   sso.SsoInterface
-	//GoHr  gohr.GoHr
+	AppConf dto.AppConf
 }
 
-func NewSpiderman(conf dto.AppConf) SpidermanInterface {
-	var uc SpidermanInterface
-	uc = &SpidermanClient{
-		PizzaCore: pizza.NewPizzaClient(conf),
-		SsoCore:   sso.NewSsoClient(conf),
+func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
+	//verify app conf
+	if conf.Token == "" || conf.ServiceName == "" {
+		return nil, errors.New("AppConf 配置信息缺失")
 	}
-	return uc
+
+	var uc Spiderman
+	uc = &SpidermanClient{
+		AppConf: conf,
+	}
+	return uc, nil
 }
 
-func (receiver SpidermanClient) Pizza() pizza.PizzaInterface {
-	return receiver.PizzaCore
+//Pizza
+func (receiver *SpidermanClient) Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error) {
+	//verify pizza conf
+	if conf.BaseUri == "" {
+		return nil, errors.New("PizzaConf 配置信息缺失")
+	}
+	return pizza.NewPizzaClient(receiver.AppConf, conf), nil
 }
 
-func (receiver SpidermanClient) Sso() sso.SsoInterface {
-	return receiver.SsoCore
+//Sso
+func (receiver *SpidermanClient) Sso(conf dto.SsoConf) (sso.SsoInterface, error) {
+	//verify sso conf
+	if conf.BaseUri == "" || conf.AppId == "" || conf.AppKey == "" {
+		return nil, errors.New("SsoConf 配置信息缺失")
+	}
+	return sso.NewSsoClient(receiver.AppConf, conf), nil
+}
+
+//Alert
+func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface, error) {
+	//verify pizza conf
+	if conf.BaseUri == "" {
+		return nil, errors.New("AlertConf 配置信息缺失")
+	}
+	return alert.NewAlertClient(receiver.AppConf, conf), nil
 }

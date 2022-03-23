@@ -27,7 +27,7 @@ func init() {
 	retryClient.RetryWaitMin = 10 * time.Millisecond
 	retryClient.RetryWaitMax = 500 * time.Millisecond
 	retryClient.HTTPClient = &http.Client{
-		Timeout:   1 * time.Second, //1s 超时
+		Timeout:   5 * time.Second, //1s 超时
 		Transport: t,
 	}
 	retryClient.CheckRetry = func(ctx context.Context, resp *http.Response, err error) (bool, error) {
@@ -46,12 +46,7 @@ func init() {
 	httpClient = retryClient.StandardClient()
 }
 
-func Get(uri string, conf dto.AppConf, s interface{}) error {
-	e := checkAppConf(conf)
-	if  e != nil{
-		return e
-	}
-	url := conf.BaseUri + uri
+func Get(url string, conf dto.AppConf, s interface{}) error {
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return err
@@ -76,12 +71,7 @@ func Get(uri string, conf dto.AppConf, s interface{}) error {
 	return err
 }
 
-func Post(uri string, conf dto.AppConf, params interface{}, rt interface{}) (err error) {
-	e := checkAppConf(conf)
-	if  e != nil{
-		return e
-	}
-	url := conf.BaseUri + uri
+func Post(url string, conf dto.AppConf, params interface{}, rt interface{}) (err error) {
 	postBody, _ := json.Marshal(params)
 	responseBody := strings.NewReader(string(postBody))
 	// create a request object
@@ -114,13 +104,22 @@ func Post(uri string, conf dto.AppConf, params interface{}, rt interface{}) (err
 	return err
 }
 
+// get header authorization
 func getAuthorization(conf dto.AppConf) string {
 	return conf.ServiceName + " " + conf.Token
 }
 
-func checkAppConf(conf dto.AppConf) error {
-	if conf.BaseUri =="" || conf.Token == "" || conf.ServiceName == "" {
-		return errors.New("AppConf 配置信息缺失")
+// check response status
+func checkResponse(resp *http.Response) error {
+	var err error
+	if resp.StatusCode != 200 {
+		if resp.StatusCode == 500 {
+			err = errors.New("服务内部错误")
+		}else if resp.StatusCode == 401 {
+			err = errors.New("没有api权限")
+		}else {
+			err = errors.New("服务内部错误")
+		}
 	}
-	return nil
+	return err
 }
