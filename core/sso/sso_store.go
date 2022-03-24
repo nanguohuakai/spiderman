@@ -6,7 +6,7 @@ import (
 	"github.com/nanguohuakai/spiderman/pkg/httpclient"
 )
 
-
+//Verify -
 func (s *Client) Verify(token string) (dto.SsoVerifyResponse, error) {
 	u := s.SsoConf.BaseUri + "/api/v2/sso/verify?token=" + token + withQuery(s)
 	var output dto.SsoVerifyResponse
@@ -27,6 +27,7 @@ func (s *Client) Verify(token string) (dto.SsoVerifyResponse, error) {
 	return output, nil
 }
 
+//JsConfig -
 func (s *Client) JsConfig(url string) (dto.JsConfigResponse, error) {
 	u := s.SsoConf.BaseUri + "/api/v1/yach/js_config?url=" + url + withQuery(s)
 	var output dto.JsConfigResponse
@@ -47,6 +48,7 @@ func (s *Client) JsConfig(url string) (dto.JsConfigResponse, error) {
 	return output, nil
 }
 
+//Ticket -
 func (s *Client) Ticket() (dto.TicketResponse, error) {
 	u := s.SsoConf.BaseUri + "/api/v1/sso/basic/get_ticket" + withQuery(s)
 	var output dto.TicketResponse

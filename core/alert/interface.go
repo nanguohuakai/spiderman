@@ -8,8 +8,9 @@ type AlertInterface interface {
 	Error(msg string) (bool, error)
 	Info(msg string) (bool, error)
 	Debug(msg string) (bool, error)
+	K8sSend(msg string) (bool, error)
 	//On(serviceName string) *Client todo 暂时不开放此方法
-	sendAlert(msg string, level string) (alertRes, error)
+	sendAlert(msg string, level string) (dto.AlertRes, error)
 }
 
 type Client struct {

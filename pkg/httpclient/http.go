@@ -4,11 +4,13 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
+	"fmt"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/nanguohuakai/spiderman/dto"
 	"io/ioutil"
 	"net"
 	"net/http"
+	"net/url"
 	"strings"
 	"time"
 )
@@ -115,11 +117,33 @@ func checkResponse(resp *http.Response) error {
 	if resp.StatusCode != 200 {
 		if resp.StatusCode == 500 {
 			err = errors.New("服务内部错误")
-		}else if resp.StatusCode == 401 {
+		} else if resp.StatusCode == 401 {
 			err = errors.New("没有api权限")
-		}else {
+		} else {
 			err = errors.New("服务内部错误")
 		}
 	}
 	return err
+}
+
+//HttpBuildQuery 拼接url ;uri host; path 请求路径; params 请求参数
+//return url
+func HttpBuildQuery(uri string, path string, params interface{}) string {
+	var res map[string]interface{}
+	//解析param struct
+	j, _ := json.Marshal(params)
+	_ = json.Unmarshal(j, &res)
+
+	baseUri := uri + path
+	//组合get参数拼接
+	u, _ := url.Parse(baseUri)
+	q := u.Query()
+	for k, v := range res {
+		q.Add(k, fmt.Sprintf("%v", v))
+	}
+
+	u.RawQuery = q.Encode()
+
+	//get 请求
+	return u.String()
 }

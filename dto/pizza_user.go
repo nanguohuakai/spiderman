@@ -1,5 +1,6 @@
 package dto
 
+//EmployeeInfo 人员信息
 type EmployeeInfo struct {
 	ID               uint64   `json:"id"`
 	EmplID           string   `json:"workcode"`
@@ -69,4 +70,63 @@ type EmployeeInfo struct {
 	NationalID     string `json:"national_id"`      // 身份证号
 	NationalIDType string `json:"national_id_type"` // 身份证类型
 	TerminationDt string `json:"termination_dt"`
+}
+
+//AppointmentItem 任命信息
+type AppointmentItem struct {
+	EmplID          string `json:"workcode" gorm:"column:empl_id"`
+	AppointmentDesc string `json:"appt_desc" gorm:"column:appt_desc"`
+	TermStartDate   string `json:"term_start_at"  gorm:"column:term_start_at"`
+	TermType        string `json:"term_type" gorm:"column:term_type"`
+	YearOfAllTerm   string `json:"year_of_all_term" gorm:"column:year_of_all_term"`
+	YearOfOneTerm   string `json:"year_of_one_term" gorm:"column:year_of_one_term"`
+}
+
+type ExperienceRecord struct {
+	ID             uint64 `json:"id"`
+	EmplID         string `json:"empl_id"`
+	StartDate      string `json:"start_date"`
+	EndDate        string `json:"end_date"`
+	DepartmentName string `json:"department_name"`
+	SuperiorName   string `json:"superior_name"`
+	Position       string `json:"position"`
+	Level          string `json:"level"` // 职级
+	Reason         string `json:"reason"`
+	FullReason     string `json:"full_reason"`
+	Type           string `json:"type"`
+	JobFamily      string `json:"job_family"`
+	JobFamilyDescr string `json:"job_family_descr"`
+}
+
+type BasicRecord struct {
+	ID                 uint64 `json:"id"`
+	EmplID             string `json:"empl_id"`
+	StartDate          string `json:"start_date"`
+	EndDate            string `json:"end_date"`
+	DepartmentId       string `json:"department_id"`
+	DepartmentName     string `json:"department_name"`
+	DepartmentPosition string `json:"department_position"`
+	Position           string `json:"position"`
+	Level              string `json:"level"` // 职级
+	Reason             string `json:"reason"`
+	Type               string `json:"type"`
+	FullReason         string `json:"full_reason"`
+	JobSeq             string `json:"job_seq"`
+	JobSeqDesc         string `json:"job_seq_desc"`
+	JobFamily          string `json:"job_family"`
+	JobFamilyDescr     string `json:"job_family_descr"`
+	SuperiorName       string `json:"superior_name"`
+	SuperiorCode       string `json:"superior_code"`
+	EmpRcd             string `json:"emp_rcd"` // 岗位序号
+	EffSeq             string `json:"eff_seq"`
+}
+
+type BasicExpItem struct {
+	ID          uint64 `json:"id"`
+	EmplID      string `json:"empl_id"` // 员工id
+	DeptEx      string `json:"dept_ex"`
+	Employer    string `json:"employer"`     // 雇主
+	EndingTitle string `json:"ending_title"` // 最后职务
+	StartDt     string `json:"start_dt"`     // 开始日期
+	EndDt       string `json:"end_dt"`       // 结束日期
 }

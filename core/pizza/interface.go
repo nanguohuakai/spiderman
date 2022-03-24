@@ -6,8 +6,17 @@ import (
 
 //PizzaInterface pizza
 type PizzaInterface interface {
-	GetEmployeeInfo(code string) (dto.EmployeeInfoRes, error)
-	GetDeptInfo(code string) (string, error)
+	GetEmployeeInfo(workcode string) (dto.EmployeeInfoRes, error)                            //GetEmployeeInfo 获取个人信息
+	GetAppointment(workcode string) (dto.AppointmentItemRes, error)                          //GetAppointment 任命信息
+	GetTalExperienceRecords(workcode string) (dto.ExperienceRecordRes, error)                //GetTalExperienceRecords 入司后履历  人才 PC端履历
+	GetTalRecords(input dto.PizzaInput) (dto.TalRecordsRes, error)                           //GetTalRecords 入司后履历
+	GetExps(input dto.PizzaInput) (dto.ExpItemRes, error)                                    //GetExps  入司前履历
+	GetDeptInfo(code string) (string, error)                                                 //GetDeptInfo 获取部门信息
+	GetProjectList(viewerWorkcode string, viewedWorkcode string) (dto.ProjectListRes, error) //GetProjectList 获取项目列表
+
+	SyncEsChangeData() (dto.PizzaResponse, error) //SyncEsChangeData 同步工作数据到es
+	SyncEsExpData() (dto.PizzaResponse, error)    //SyncEsExpData 同步 experience_list 表数据到 es
+	SyncEsEduData() (dto.PizzaResponse, error)    //SyncEsEduData 同步教育信息到es
 }
 
 type Client struct {

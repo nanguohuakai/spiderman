@@ -56,5 +56,17 @@ func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface
 	if conf.BaseUri == "" || conf.Level == "" || conf.Env == "" {
 		return nil, errors.New("AlertConf 配置信息缺失")
 	}
+
+	var levelMap = []string{"warn", "debug", "info", "error"}
+	f := false
+	for _, v := range levelMap {
+		if v == conf.Level {
+			f = true
+			break
+		}
+	}
+	if !f {
+		return nil, errors.New("AlertConf Level 信息错误")
+	}
 	return alert.NewAlertClient(receiver.AppConf, conf), nil
 }
