@@ -6,7 +6,18 @@ go get github.com/nanguohuakai/spiderman
 
 ## Usage Example
 ````
-svc := NewSpiderman(conf).Pizza()
-res := svc.GetEmployeeInfo()
+conf := dto.AppConf{
+		ServiceName: "",
+		Token:       "",
+	}
+s,_ :=NewSpiderman(conf)
+
+ssoConf := dto.SsoConf{
+		BaseUri:     "",
+		AppId:       "",
+		AppKey:      "",
+	}
+sso, _ := s.Sso(ssoConf)
+r,err := sso.Verify("")
 
 ````

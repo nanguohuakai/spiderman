@@ -1,3 +1,4 @@
+//spiderman client
 package spiderman
 
 import (
@@ -31,7 +32,7 @@ func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
 	return uc, nil
 }
 
-//Pizza
+//Pizza store
 func (receiver *SpidermanClient) Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error) {
 	//verify pizza conf
 	if conf.BaseUri == "" {
@@ -40,7 +41,7 @@ func (receiver *SpidermanClient) Pizza(conf dto.PizzaConf) (pizza.PizzaInterface
 	return pizza.NewPizzaClient(receiver.AppConf, conf), nil
 }
 
-//Sso
+//Sso store
 func (receiver *SpidermanClient) Sso(conf dto.SsoConf) (sso.SsoInterface, error) {
 	//verify sso conf
 	if conf.BaseUri == "" || conf.AppId == "" || conf.AppKey == "" {
@@ -49,10 +50,10 @@ func (receiver *SpidermanClient) Sso(conf dto.SsoConf) (sso.SsoInterface, error)
 	return sso.NewSsoClient(receiver.AppConf, conf), nil
 }
 
-//Alert
+//Alert store
 func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface, error) {
 	//verify pizza conf
-	if conf.BaseUri == "" {
+	if conf.BaseUri == "" || conf.Level == "" || conf.Env == "" {
 		return nil, errors.New("AlertConf 配置信息缺失")
 	}
 	return alert.NewAlertClient(receiver.AppConf, conf), nil

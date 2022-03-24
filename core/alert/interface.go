@@ -2,8 +2,14 @@ package alert
 
 import "github.com/nanguohuakai/spiderman/dto"
 
+//AlertInterface -
 type AlertInterface interface {
-	//Send()
+	Warn(msg string) (bool, error)
+	Error(msg string) (bool, error)
+	Info(msg string) (bool, error)
+	Debug(msg string) (bool, error)
+	//On(serviceName string) *Client todo 暂时不开放此方法
+	sendAlert(msg string, level string) (alertRes, error)
 }
 
 type Client struct {
@@ -19,3 +25,9 @@ func NewAlertClient(conf dto.AppConf, alertConf dto.AlertConf) AlertInterface {
 	}
 	return pc
 }
+
+// On 提供切换service name方法
+//func (a *Client) On(serviceName string) *Client {
+//	a.Conf.ServiceName = serviceName
+//	return a
+//}
