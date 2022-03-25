@@ -38,3 +38,8 @@ func (p *Client) SyncEsExpData() (dto.PizzaResponse, error) {
 func (p *Client) SyncEsEduData() (dto.PizzaResponse, error) {
 	return syncResponse(p, getSyncUrl(p, "/api/v1/edu/job/es"))
 }
+
+//SyncEsEmployeeData 同步用户信息到es
+func (p *Client) SyncEsEmployeeData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/employee/job/es"))
+}

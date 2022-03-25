@@ -69,7 +69,7 @@ type EmployeeInfo struct {
 	PoliticalDescr string `json:"political_descr"`  // 政治面貌描述
 	NationalID     string `json:"national_id"`      // 身份证号
 	NationalIDType string `json:"national_id_type"` // 身份证类型
-	TerminationDt string `json:"termination_dt"`
+	TerminationDt  string `json:"termination_dt"`
 }
 
 //AppointmentItem 任命信息
@@ -129,4 +129,22 @@ type BasicExpItem struct {
 	EndingTitle string `json:"ending_title"` // 最后职务
 	StartDt     string `json:"start_dt"`     // 开始日期
 	EndDt       string `json:"end_dt"`       // 结束日期
+}
+
+type PromotionTrackRecord struct {
+	ID        uint64 `json:"id"`
+	StartDate string `json:"start_date"`
+	Level     string `json:"level"` // 职级
+	Type      string `json:"type"`
+}
+
+type EduItem struct {
+	ID            uint64 `json:"id"`
+	EmplID        string `json:"workcode"`
+	BeginDt       string `json:"start_date"` // 开始日期
+	EndDt         string `json:"end_date"`   // 结束日期
+	HrSchDes      string `json:"school"`     // 学校描述
+	HrDegreeDescr string `json:"degree"`     // 学历描述
+	HrMajorDes    string `json:"major"`      // 专业名称
+	EduTypeDescr  string `json:"study_form"` // 学习形式描述
 }

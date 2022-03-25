@@ -20,6 +20,34 @@ func (p *Client) GetEmployeeInfo(workcode string) (dto.EmployeeInfoRes, error) {
 	return output, nil
 }
 
+//GetEmployeeList 获取人员列表  （不支持分页）
+func (p *Client) GetEmployeeList(input dto.EmployeeListInput) (dto.EmployeeListRes, error) {
+	u := p.PizzaConf.BaseUri + "/api/v1/employee/list"
+	var output dto.EmployeeListRes
+	err := httpclient.Post(u, p.Conf, input, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
+//GetEmployeeListWithPage 获取人员列表  （支持分页）
+func (p *Client) GetEmployeeListWithPage(input dto.EmployeeListInputWithPage) (dto.EmployeeListWithPageRes, error) {
+	u := p.PizzaConf.BaseUri + "/api/v1/employee/list"
+	var output dto.EmployeeListWithPageRes
+	err := httpclient.Post(u, p.Conf, input, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
 //GetAppointment 任命信息
 func (p *Client) GetAppointment(workcode string) (dto.AppointmentItemRes, error) {
 	u := p.PizzaConf.BaseUri + "/api/v1/appointment/" + workcode
@@ -81,6 +109,48 @@ func (p *Client) GetExps(input dto.PizzaInput) (dto.ExpItemRes, error) {
 	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, path, params)
 
 	var output dto.ExpItemRes
+
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
+//GetChangePromotionList 显示在人才手机端的 晋升足迹
+func (p *Client) GetChangePromotionList(input dto.PizzaInput) (dto.PromotionTrackRecordRes, error) {
+	var params = dto.PaginationParams{
+		Page:     input.Page,
+		PageSize: input.PageSize,
+	}
+	path := "/api/v1/changes/promotion/tracks/" + input.Workcode
+	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, path, params)
+
+	var output dto.PromotionTrackRecordRes
+
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
+//GetEduList 员工的教育列表
+func (p *Client) GetEduList(input dto.PizzaInput) (dto.EduItemRes, error) {
+	var params = dto.PaginationParams{
+		Page:     input.Page,
+		PageSize: input.PageSize,
+	}
+	path := "/api/v1/edu/list/" + input.Workcode
+	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, path, params)
+
+	var output dto.EduItemRes
 
 	err := httpclient.Get(u, p.Conf, &output)
 	if err != nil {
