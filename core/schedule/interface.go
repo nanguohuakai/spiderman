@@ -5,13 +5,11 @@ import (
 	"github.com/nanguohuakai/spiderman/dto"
 )
 
-
-
 type ScheduleInterface interface {
-	RegisterCorn(input dto.ScheduleInput) error
-	RegisterHandler(r *gin.Engine, f gin.HandlerFunc, relativePath string) error
-	//RegisterTime()
-	//UnRegister()
+	RegisterCorn(input dto.ScheduleRegisterInput) error
+	RegisterHandler(r *gin.Engine, f gin.HandlerFunc, relativePath string) error //RegisterHandler 注册回调路由
+	RegisterCornTime(input dto.ScheduleRegisterInput) error
+	UnRegister(scheduleId string) error //UnRegister 取消定时任务
 }
 
 type Client struct {
@@ -26,14 +24,4 @@ func NewClient(conf dto.AppConf, scheduleConf dto.ScheduleConf) ScheduleInterfac
 		ScheduleConf: scheduleConf,
 	}
 	return uc
-}
-
-type postBody struct {
-	ServiceName  string `json:"service_name"`
-	ScheduleId     string `json:"schedule_id"`
-	ScheduleName   string `json:"schedule_name"`
-	CallbackUrl    string `json:"callback_url"`
-	CallbackParams string `json:"callback_params"`
-	Value          string `json:"value"`
-	Type           int    `json:"type"`
 }
