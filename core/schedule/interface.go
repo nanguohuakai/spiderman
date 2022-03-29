@@ -20,6 +20,7 @@ type Client struct {
 
 func NewClient(conf dto.AppConf, scheduleConf dto.ScheduleConf) ScheduleInterface {
 	scheduleConf.BaseUri = strings.TrimRight(scheduleConf.BaseUri, "/")
+	scheduleConf.CallbackUri = strings.TrimRight(scheduleConf.CallbackUri, "/")
 	var uc ScheduleInterface
 	uc = &Client{
 		AppConf:      conf,
