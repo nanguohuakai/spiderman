@@ -1,5 +1,7 @@
 package dto
 
+import "strings"
+
 type AppConf struct {
 	ServiceName string `json:"service_name"`
 	Token       string `json:"token"`
@@ -25,11 +27,11 @@ type ScheduleConf struct {
 	BaseUri      string `json:"base_uri"`     //base url talent-scheduler.chengjiukehu.com
 	CallbackUri  string `json:"callback_uri"` //callback url
 	callbackPath string `json:"callback_path"`
-	isRegister   bool   `json:"is_register"`
+	isRegister   bool   `json:"is_register"` //是否注册
 }
 
 func (s *ScheduleConf) SetCallbackPath(path string) {
-	s.callbackPath = path
+	s.callbackPath =  "/" + strings.Trim(path, "/")
 }
 
 func (s *ScheduleConf) SetIsRegister(isRegister bool) {
