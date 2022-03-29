@@ -7,8 +7,8 @@ import (
 )
 
 type projectListInput struct {
-	ViewerWorkcode string `json:"viewer_workcode"`
-	ViewedWorkcode string `json:"viewed_workcode"`
+	ViewerWorkcode string `json:"viewer_workcode" url:"viewer_workcode"`
+	ViewedWorkcode string `json:"viewed_workcode" url:"viewed_workcode"`
 }
 
 //GetProjectList 获取项目列表

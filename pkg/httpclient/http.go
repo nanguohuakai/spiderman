@@ -4,13 +4,12 @@ import (
 	"context"
 	"encoding/json"
 	"errors"
-	"fmt"
+	"github.com/google/go-querystring/query"
 	"github.com/hashicorp/go-retryablehttp"
 	"github.com/nanguohuakai/spiderman/dto"
 	"io/ioutil"
 	"net"
 	"net/http"
-	"net/url"
 	"strings"
 	"time"
 )
@@ -58,6 +57,11 @@ func Get(url string, conf dto.AppConf, s interface{}) error {
 	if err != nil {
 		return err
 	}
+
+	if err = checkResponse(resp); err != nil {
+		return err
+	}
+
 	defer func() {
 		// close body stream to avoid memory leak
 		if innerErr := resp.Body.Close(); innerErr != nil {
@@ -93,6 +97,11 @@ func Post(url string, conf dto.AppConf, params interface{}, rt interface{}) (err
 	if err != nil {
 		return err
 	}
+
+	if err = checkResponse(resp); err != nil {
+		return err
+	}
+
 	defer func() {
 		// close body stream to avoid memory leak
 		if innerErr := resp.Body.Close(); innerErr != nil {
@@ -129,21 +138,6 @@ func checkResponse(resp *http.Response) error {
 //HttpBuildQuery 拼接url ;uri host; path 请求路径; params 请求参数
 //return url
 func HttpBuildQuery(uri string, path string, params interface{}) string {
-	var res map[string]interface{}
-	//解析param struct
-	j, _ := json.Marshal(params)
-	_ = json.Unmarshal(j, &res)
-
-	baseUri := uri + path
-	//组合get参数拼接
-	u, _ := url.Parse(baseUri)
-	q := u.Query()
-	for k, v := range res {
-		q.Add(k, fmt.Sprintf("%v", v))
-	}
-
-	u.RawQuery = q.Encode()
-
-	//get 请求
-	return u.String()
+	v, _ := query.Values(params)
+	return uri + path + "?" + v.Encode()
 }

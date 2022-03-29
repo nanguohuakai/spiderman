@@ -148,3 +148,35 @@ type EduItem struct {
 	HrMajorDes    string `json:"major"`      // 专业名称
 	EduTypeDescr  string `json:"study_form"` // 学习形式描述
 }
+
+type KpiItem struct {
+	ID            uint64 `json:"id"`
+	EmplID        string `json:"workcode"`
+	EmplRcd       int    `json:"empl_rcd"`
+	Year          int    `json:"year"`
+	KpiPeriod     string `json:"kpi_period"`
+	KpiPeriodDesc string `json:"kpi_period_desc"`
+	BeginDt       string `json:"start_date,omitempty"`
+	EndDt         string `json:"end_date,omitempty"`
+	TotalScore    string `json:"total_score,omitempty"`
+	KpiLevel      string `json:"kpi_level,omitempty"`
+	KpiInternal   string `json:"kpi_internal,omitempty"`
+	Kpi253        string `json:"kpi_253,omitempty"`
+	KpiZzb        string `json:"kpi_zzb,omitempty"`
+	Comments      string `json:"comments,omitempty"`
+	CreatedAt     string `json:"created_at"`
+	UpdatedAt     string `json:"updated_at"`
+}
+
+type RewardItem struct {
+	ID           uint64 `json:"id"`
+	EmplID       string `json:"workcode"`
+	BeginDt      string `json:"start_date,omitempty"`    // 开始日期
+	EndDt        string `json:"end_date,omitempty"`      // 结束日期
+	Title        string `json:"title,omitempty"`         // 名称
+	Type         int    `json:"type"`                    //类型：1：荣誉和奖励 2：违纪处理
+	Category     string `json:"category,omitempty"`      // 类型key
+	CategoryDesc string `json:"category_desc,omitempty"` //类型描述
+	Desc         string `json:"desc,omitempty"`          // 描述
+	UpdatedAt    string `json:"updated_at,omitempty"`    //更新时间
+}

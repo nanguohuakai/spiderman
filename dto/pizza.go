@@ -72,3 +72,15 @@ type EduItemRes struct {
 	Msg  string     `json:"msg,omitempty"`
 	Data *[]EduItem `json:"data,omitempty"`
 }
+
+type KpiListRes struct {
+	Code int        `json:"code"`
+	Msg  string     `json:"msg,omitempty"`
+	Data *[]KpiItem `json:"data,omitempty"`
+}
+
+type RewardListRes struct {
+	Code int           `json:"code"`
+	Msg  string        `json:"msg,omitempty"`
+	Data *[]RewardItem `json:"data,omitempty"`
+}

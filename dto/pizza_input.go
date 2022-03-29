@@ -7,8 +7,8 @@ type PizzaInput struct {
 }
 
 type PaginationParams struct {
-	Page     int `json:"page,omitempty"`
-	PageSize int `json:"pageSize,omitempty"`
+	Page     int `json:"page,omitempty" url:"page,omitempty"`
+	PageSize int `json:"pageSize,omitempty" url:"pageSize,omitempty"`
 }
 
 type EmployeeListInput struct {
@@ -28,4 +28,29 @@ type EmployeeListInputWithPage struct {
 	TermFiltersOps  []TermFiltersOps  `json:"term_filter_ops"`
 	ScopeFiltersOps []ScopeFiltersOps `json:"scope_filter_ops"`
 	TermExcludeOps  []TermFiltersOps  `json:"term_exclude_ops"`
+}
+
+type EmployeeListV2Input struct {
+	OrderOps   []OrderOps                 `json:"order_ops"`
+	Conditions []EmployeeListFilterStruct `json:"conditions"`
+}
+
+type EmployeeListV2InputWithPage struct {
+	Pagination PaginationOps              `json:"pagination"`
+	OrderOps   []OrderOps                 `json:"order_ops"`
+	Conditions []EmployeeListFilterStruct `json:"conditions"`
+}
+
+type EmployeeListFilterStruct struct {
+	WildSearchOps   *WildSearchOps    `json:"wild_search"`
+	WildMatchOps    *WildMatchOps     `json:"wild_match"`
+	TermFiltersOps  []TermFiltersOps  `json:"term_filter_ops"`
+	ScopeFiltersOps []ScopeFiltersOps `json:"scope_filter_ops"`
+	TermExcludeOps  []TermFiltersOps  `json:"term_exclude_ops"`
+}
+
+type RewardInput struct {
+	Types     []string `json:"types[],omitempty" url:"types[],omitempty"`
+	StartDate *string  `json:"startDate,omitempty" url:"startDate,omitempty"`
+	EndDate   *string  `json:"endDate,omitempty"  url:"endDate,omitempty"`
 }

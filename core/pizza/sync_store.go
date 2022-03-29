@@ -43,3 +43,13 @@ func (p *Client) SyncEsEduData() (dto.PizzaResponse, error) {
 func (p *Client) SyncEsEmployeeData() (dto.PizzaResponse, error) {
 	return syncResponse(p, getSyncUrl(p, "/api/v1/employee/job/es"))
 }
+
+//SyncEsRewardsData 同步用户奖惩信息到es
+func (p *Client) SyncEsRewardsData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/rewards/job/es"))
+}
+
+//SyncEsKpiData 同步kpi信息到es
+func (p *Client) SyncEsKpiData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/kpi/job/es"))
+}
