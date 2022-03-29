@@ -54,7 +54,13 @@ func (c *Client) schedulePost(input dto.ScheduleRegisterInput, registerType int)
 	}
 
 	postBody.CallbackUrl = c.ScheduleConf.CallbackUri + c.ScheduleConf.GetCallbackPath()
-
+	//var uu, err = url.Parse(c.ScheduleConf.CallbackUri)
+	//if err != nil {
+	//	return err
+	//}
+	//
+	//uu.Path = path.Join(uu.Path, c.ScheduleConf.GetCallbackPath())
+	//postBody.CallbackUrl= uu.String()
 	var output interface{}
 	return httpclient.Post(u, c.AppConf, postBody, &output)
 }
