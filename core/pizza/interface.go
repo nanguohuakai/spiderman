@@ -19,7 +19,8 @@ type PizzaInterface interface {
 	GetEduList(input dto.PizzaInput) (dto.EduItemRes, error)                                              //GetEduList 员工的教育列表
 	GetKpiList(workcode string) (dto.KpiListRes, error)                                                   //GetKpiList 员工的绩效列表
 	GetRewardList(workcode string, input dto.RewardInput) (dto.RewardListRes, error)                      //GetRewardList 获取员工奖惩信息
-	GetDeptInfo(code string) (string, error)                                                              //GetDeptInfo 获取部门信息
+	GetDeptList(input dto.DeptListInput) (dto.DeptListRes, error)                                         //GetDeptList 获取部门信息 (不支持分页）
+	GetDeptListWithPage(input dto.DeptListInputWithPage) (dto.DeptListWithPageRes, error)                 //GetDeptListWithPage 获取部门信息 (支持分页）
 	GetProjectList(viewerWorkcode string, viewedWorkcode string) (dto.ProjectListRes, error)              //GetProjectList 获取项目列表
 
 	SyncEsChangeData() (dto.PizzaResponse, error)   //SyncEsChangeData 同步工作数据到es
