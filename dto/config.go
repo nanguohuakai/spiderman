@@ -16,7 +16,30 @@ type PizzaConf struct {
 }
 
 type AlertConf struct {
-	BaseUri     string `json:"base_uri"` //base url
-	Level       string `json:"level"` //日志级别限制 >= level
-	Env         string `json:"env"` //项目环境
+	BaseUri string `json:"base_uri"` //base url
+	Level   string `json:"level"`    //日志级别限制 >= level
+	Env     string `json:"env"`      //项目环境
+}
+
+type ScheduleConf struct {
+	BaseUri      string `json:"base_uri"`     //base url talent-scheduler.chengjiukehu.com
+	CallbackUri  string `json:"callback_uri"` //callback url
+	callbackPath string `json:"callback_path"`
+	isRegister   bool   `json:"is_register"`
+}
+
+func (s *ScheduleConf) SetCallbackPath(path string) {
+	s.callbackPath = path
+}
+
+func (s *ScheduleConf) SetIsRegister(isRegister bool) {
+	s.isRegister = isRegister
+}
+
+func (s ScheduleConf) GetIsRegister() bool {
+	return s.isRegister
+}
+
+func (s ScheduleConf) GetCallbackPath() string {
+	return s.callbackPath
 }
