@@ -22,12 +22,15 @@ func (c *Client) RegisterCorn(input dto.ScheduleInput) error {
 		Value: input.Value,
 		Type: 0,
 	}
-	params , err := json.Marshal(input.CallbackParams)
-	postBody.CallbackParams = string(params)
-	if err != nil {
-		postBody.CallbackParams = ""
-	}
 
+	postBody.CallbackParams = ""
+	if input.CallbackParams != nil {
+		params , err := json.Marshal(input.CallbackParams)
+		postBody.CallbackParams = string(params)
+		if err != nil {
+			postBody.CallbackParams = ""
+		}
+	}
 
 	postBody.CallbackUrl = c.ScheduleConf.CallbackUri + c.ScheduleConf.GetCallbackPath()
 
