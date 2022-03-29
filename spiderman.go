@@ -5,6 +5,7 @@ import (
 	"errors"
 	"github.com/nanguohuakai/spiderman/core/alert"
 	"github.com/nanguohuakai/spiderman/core/pizza"
+	"github.com/nanguohuakai/spiderman/core/schedule"
 	"github.com/nanguohuakai/spiderman/core/sso"
 	"github.com/nanguohuakai/spiderman/dto"
 )
@@ -13,6 +14,7 @@ type Spiderman interface {
 	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)
 	Sso(conf dto.SsoConf) (sso.SsoInterface, error)
 	Alert(conf dto.AlertConf) (alert.AlertInterface, error)
+	Schedule(conf dto.ScheduleConf)(schedule.ScheduleInterface, error)
 }
 
 type SpidermanClient struct {
@@ -69,4 +71,11 @@ func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface
 		return nil, errors.New("AlertConf Level 信息错误")
 	}
 	return alert.NewAlertClient(receiver.AppConf, conf), nil
+}
+
+func (receiver *SpidermanClient) Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error)  {
+	if conf.BaseUri == "" || conf.CallbackUri == "" {
+		return nil, errors.New("ScheduleConf 配置信息缺失")
+	}
+	return schedule.NewClient(receiver.AppConf, conf), nil
 }
