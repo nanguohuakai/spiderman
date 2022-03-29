@@ -3,6 +3,7 @@ package schedule
 import (
 	"github.com/gin-gonic/gin"
 	"github.com/nanguohuakai/spiderman/dto"
+	"strings"
 )
 
 type ScheduleInterface interface {
@@ -18,6 +19,7 @@ type Client struct {
 }
 
 func NewClient(conf dto.AppConf, scheduleConf dto.ScheduleConf) ScheduleInterface {
+	scheduleConf.BaseUri = strings.TrimRight(scheduleConf.BaseUri, "/")
 	var uc ScheduleInterface
 	uc = &Client{
 		AppConf:      conf,

@@ -16,7 +16,7 @@ type ScheduleRegisterInput struct {
 //Check registerType=0 value为 cron 表达式类型;1 - value为具体特定时间
 func (s *ScheduleRegisterInput) Check(registerType int) error {
 	if s.ScheduleId == ""{
-		return errors.New("ScheduleRegisterInput ScheduleId is nil")
+		return errors.New("ScheduleRegisterInput ScheduleId empty")
 	}
 
 	if registerType == 0{

@@ -2,6 +2,7 @@ package pizza
 
 import (
 	"github.com/nanguohuakai/spiderman/dto"
+	"strings"
 )
 
 //PizzaInterface pizza
@@ -38,6 +39,7 @@ type Client struct {
 
 func NewPizzaClient(conf dto.AppConf, pizzaConf dto.PizzaConf) PizzaInterface {
 	var pc PizzaInterface
+	pizzaConf.BaseUri = strings.TrimRight(pizzaConf.BaseUri, "/")
 	pc = &Client{
 		Conf:      conf,
 		PizzaConf: pizzaConf,
