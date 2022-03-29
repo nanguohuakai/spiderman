@@ -16,6 +16,7 @@ func (c *Client) RegisterCorn(input dto.ScheduleInput) error {
 	}
 	u := c.ScheduleConf.BaseUri + "/api/v1/schedule/register"
 	var postBody = postBody{
+		ServiceName: c.AppConf.ServiceName,
 		ScheduleId: input.ScheduleId,
 		ScheduleName: input.ScheduleName,
 		Value: input.Value,

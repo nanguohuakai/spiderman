@@ -29,6 +29,7 @@ func NewClient(conf dto.AppConf, scheduleConf dto.ScheduleConf) ScheduleInterfac
 }
 
 type postBody struct {
+	ServiceName  string `json:"service_name"`
 	ScheduleId     string `json:"schedule_id"`
 	ScheduleName   string `json:"schedule_name"`
 	CallbackUrl    string `json:"callback_url"`
