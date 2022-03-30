@@ -1,6 +1,9 @@
 package alert
 
-import "github.com/nanguohuakai/spiderman/dto"
+import (
+	"github.com/nanguohuakai/spiderman/dto"
+	"strings"
+)
 
 //AlertInterface -
 type AlertInterface interface {
@@ -19,6 +22,7 @@ type Client struct {
 }
 
 func NewAlertClient(conf dto.AppConf, alertConf dto.AlertConf) AlertInterface {
+	alertConf.BaseUri = strings.TrimRight(alertConf.BaseUri, "/")
 	var pc AlertInterface
 	pc = &Client{
 		Conf:      conf,

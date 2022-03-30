@@ -2,6 +2,7 @@ package sso
 
 import (
 	"github.com/nanguohuakai/spiderman/dto"
+	"strings"
 )
 
 type SsoInterface interface {
@@ -16,6 +17,7 @@ type Client struct {
 }
 
 func NewSsoClient(conf dto.AppConf, ssoConf dto.SsoConf) SsoInterface {
+	ssoConf.BaseUri = strings.TrimRight(ssoConf.BaseUri, "/")
 	var pc SsoInterface
 	pc = &Client{
 		Conf: conf,
