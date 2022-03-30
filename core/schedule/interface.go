@@ -1,3 +1,31 @@
+/*
+使用 RegisterCorn 和 RegisterCornTime 之前必须先使用 RegisterHandler 注册路由
+
+使用 RegisterCorn 和 RegisterCornTime 里有判断是否已经使用 RegisterHandler 注册路由的强制校验
+
+保证调用 RegisterHandler 和调用 RegisterCorn 或 RegisterCornTime 的 Schedule 为同一个实例化，否则报错
+
+    conf := dto.AppConf{
+		ServiceName: "test",
+		Token:       "example",
+	}
+	spiderman, _ := spiderman2.NewSpiderman(conf)
+
+	schedule,_  := spiderman.Schedule(dto.ScheduleConf{
+		BaseUri:     "http://127.0.0.1:8081",
+		CallbackUri: "http://127.0.0.1:8080",
+	})
+	var r *gin.Engine
+	_ = schedule.RegisterHandler(r, JobHandelFunc, "/test/path")
+
+	_= schedule.RegisterCorn(dto.ScheduleRegisterInput{
+		ScheduleId:     "test-talent",
+		ScheduleName:   "ttttt",
+		CallbackParams:  nil,
+		Value:          "*\/1 * * * *",
+	})
+
+ */
 package schedule
 
 import (
@@ -5,6 +33,7 @@ import (
 	"github.com/nanguohuakai/spiderman/dto"
 	"strings"
 )
+
 
 //ScheduleInterface support pipelining using the RegisterCorn, RegisterCornTime, RegisterHandler and UnRegister methods
 type ScheduleInterface interface {
