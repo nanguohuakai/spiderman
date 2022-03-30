@@ -10,17 +10,19 @@ import (
 	"github.com/nanguohuakai/spiderman/dto"
 )
 
+//Spiderman support pipelining using the Pizza, Sso, Schedule and Alert methods
 type Spiderman interface {
-	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)
-	Sso(conf dto.SsoConf) (sso.SsoInterface, error)
-	Alert(conf dto.AlertConf) (alert.AlertInterface, error)
-	Schedule(conf dto.ScheduleConf)(schedule.ScheduleInterface, error)
+	Alert(conf dto.AlertConf) (alert.AlertInterface, error)             //Alert 消息服务
+	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)             //Pizza pizza服务
+	Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error) //Schedule 定时任务调度服务
+	Sso(conf dto.SsoConf) (sso.SsoInterface, error)                     //Sso sso服务
 }
 
 type SpidermanClient struct {
 	AppConf dto.AppConf
 }
 
+//The NewSpiderman interface is the primary interface for working with Spiderman
 func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
 	//verify app conf
 	if conf.Token == "" || conf.ServiceName == "" {
@@ -32,9 +34,10 @@ func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
 		AppConf: conf,
 	}
 	return uc, nil
+
 }
 
-//Pizza store
+//Pizza store pizza service
 func (receiver *SpidermanClient) Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error) {
 	//verify pizza conf
 	if conf.BaseUri == "" {
@@ -43,7 +46,7 @@ func (receiver *SpidermanClient) Pizza(conf dto.PizzaConf) (pizza.PizzaInterface
 	return pizza.NewPizzaClient(receiver.AppConf, conf), nil
 }
 
-//Sso store
+//Sso store sso  service
 func (receiver *SpidermanClient) Sso(conf dto.SsoConf) (sso.SsoInterface, error) {
 	//verify sso conf
 	if conf.BaseUri == "" || conf.AppId == "" || conf.AppKey == "" {
@@ -52,7 +55,7 @@ func (receiver *SpidermanClient) Sso(conf dto.SsoConf) (sso.SsoInterface, error)
 	return sso.NewSsoClient(receiver.AppConf, conf), nil
 }
 
-//Alert store
+//Alert store alert service
 func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface, error) {
 	//verify pizza conf
 	if conf.BaseUri == "" || conf.Level == "" || conf.Env == "" {
@@ -73,7 +76,8 @@ func (receiver *SpidermanClient) Alert(conf dto.AlertConf) (alert.AlertInterface
 	return alert.NewAlertClient(receiver.AppConf, conf), nil
 }
 
-func (receiver *SpidermanClient) Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error)  {
+//Schedule store schedule service
+func (receiver *SpidermanClient) Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error) {
 	if conf.BaseUri == "" || conf.CallbackUri == "" {
 		return nil, errors.New("ScheduleConf 配置信息缺失")
 	}

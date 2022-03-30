@@ -10,16 +10,18 @@ import (
 	"strings"
 )
 const(
-	//RegisterTypeCron = 0, cron 表达式类型 例子 :"*/5 * * * *"
-	RegisterTypeCron = 0
-	//RegisterTypeTime = 1, 特定时间 例子: "2022-10-11 12:12" 精确到分
-	RegisterTypeTime = 1
+	//RegisterTypeCron  0 cron 表达式类型 例子 :"*/5 * * * *"
+	RegisterTypeCron = iota
+	//RegisterTypeTime  1 特定时间 例子: "2022-10-11 12:12" 精确到分
+	RegisterTypeTime
 )
 
+//RegisterCorn 表达式类型定时任务 例子 :"*/1 * * * *"
 func (c *Client) RegisterCorn(input dto.ScheduleRegisterInput) error {
 	return c.schedulePost(input, RegisterTypeCron)
 }
 
+//RegisterCornTime 特定时间定时任务
 func (c *Client) RegisterCornTime(input dto.ScheduleRegisterInput) error {
 	return c.schedulePost(input, RegisterTypeTime)
 }
@@ -54,13 +56,6 @@ func (c *Client) schedulePost(input dto.ScheduleRegisterInput, registerType int)
 	}
 
 	postBody.CallbackUrl = c.ScheduleConf.CallbackUri + c.ScheduleConf.GetCallbackPath()
-	//var uu, err = url.Parse(c.ScheduleConf.CallbackUri)
-	//if err != nil {
-	//	return err
-	//}
-	//
-	//uu.Path = path.Join(uu.Path, c.ScheduleConf.GetCallbackPath())
-	//postBody.CallbackUrl= uu.String()
 	var output interface{}
 	return httpclient.Post(u, c.AppConf, postBody, &output)
 }

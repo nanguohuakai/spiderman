@@ -15,4 +15,5 @@
 # vendor/
 
 .idea
-**/*_test.go
+spiderman_test.go
+.DS_Store
