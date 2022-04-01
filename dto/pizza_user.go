@@ -180,3 +180,22 @@ type RewardItem struct {
 	Desc         string `json:"desc,omitempty"`          // 描述
 	UpdatedAt    string `json:"updated_at,omitempty"`    //更新时间
 }
+
+type CulturalItem struct {
+	ID          uint64 `json:"id"`
+	EmplID      string `json:"workcode"`
+	Year        int    `json:"year"`
+	Name        string `json:"name"`
+	Cycle       string `json:"cycle"`
+	ScoreDt     string `json:"score_dt,omitempty"`
+	Label       string `json:"label,omitempty"`
+	Score010    string `json:"score_010,omitempty"`
+	Score020    string `json:"score_020,omitempty"`
+	Score030    string `json:"score_030,omitempty"`
+	Score040    string `json:"score_040,omitempty"`
+	Total       string `json:"total,omitempty"`
+	Advantage   string `json:"advantage,omitempty"`
+	Inferiority string `json:"inferiority"`
+	CreatedAt   string `json:"created_at"`
+	UpdatedAt   string `json:"updated_at"`
+}

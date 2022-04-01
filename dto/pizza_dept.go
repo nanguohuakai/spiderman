@@ -46,3 +46,7 @@ type DeptInfo struct {
 	HrdCode        string `json:"hrd_code"`         // 部门属性id
 	HrdName        string `json:"hrd_name"`         // 部门属性id值
 }
+
+type EmployeeCount struct {
+	Count float64 `json:"count"`
+}

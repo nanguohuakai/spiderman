@@ -33,3 +33,21 @@ func (p *Client) GetDeptListWithPage(input dto.DeptListInputWithPage) (dto.DeptL
 	}
 	return output, nil
 }
+
+//GetDeptEmployeeCount 获取部门人数
+func  (p *Client) GetDeptEmployeeCount(deptId string) (dto.DeptEmployeCountRes, error)  {
+	path := "/api/v1/dept/employee/count/" + deptId
+	var input interface{}
+	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, path, input)
+
+	var output dto.DeptEmployeCountRes
+
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}

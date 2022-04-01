@@ -1,4 +1,4 @@
-//spiderman client
+// Package spiderman 为集成 Pizza, Sso, Schedule, Alert, Msg, Gohr, Comment等服务的客户端
 package spiderman
 
 import (
