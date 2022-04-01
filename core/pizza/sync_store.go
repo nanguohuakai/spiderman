@@ -68,3 +68,23 @@ func (p *Client) SyncEsPmAbilityData() (dto.PizzaResponse, error) {
 func (p *Client) SyncEsCulturalData() (dto.PizzaResponse, error) {
 	return syncResponse(p, getSyncUrl(p, "/api/v1/cultural/job/es"))
 }
+
+//SyncEsFamilyData 同步家庭信息到es
+func (p *Client) SyncEsFamilyData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/family/job/es"))
+}
+
+//SyncEsDimissionData 同步部门离职历史信息到es
+func (p *Client) SyncEsDimissionData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/dept/dimission/job/es"))
+}
+
+//SyncEsPromotionsData 同步部门晋升历史信息到es
+func (p *Client) SyncEsPromotionsData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/dept/promotions/job/es"))
+}
+
+//SyncEsLeadershipsData 同步部门领导历史信息到es
+func (p *Client) SyncEsLeadershipsData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/dept/leaderships/job/es"))
+}

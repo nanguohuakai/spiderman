@@ -77,3 +77,25 @@ type HrpsInput struct {
 	StartDate string `json:"start_date"` //开始日期 2006-01-02
 	EndDate   string `json:"end_date"`   //结束日期 2006-01-02
 }
+
+type CulturalListInput struct {
+	Workcodes string `json:"workcodes"`
+	StartYear string `json:"startYear"` //开始日期 2006
+	EndYear   string `json:"endYear"`   //结束日期 2006
+}
+
+type UserProjectInput struct {
+	WorkCode  string   `url:"workcode" json:"workcode" binding:"required"`
+	Status    []string `url:"status[]" json:"status" binding:"required"`
+	StartDate string   `url:"start_date" json:"start_date" binding:"required"`
+	EndDate   string   `url:"end_date" json:"end_date"`
+}
+
+type ProjectListInput struct {
+	WorkCode  string `url:"workcode" json:"workcode" binding:"required"`
+	Status    string `url:"status" json:"status" binding:"required"`
+	StartDate string `url:"start_date" json:"start_date" binding:"required"`
+	EndDate   string `url:"end_date" json:"end_date"`
+	Page      int    `url:"page" json:"page" binding:"required_with=PageSize"`
+	PageSize  int    `url:"pageSize" json:"pageSize" binding:"required_with=Page"`
+}

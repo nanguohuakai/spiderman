@@ -223,3 +223,17 @@ func (p *Client) GetRewardList(workcode string, input dto.RewardInput) (dto.Rewa
 	}
 	return output, nil
 }
+
+//GetCulturalList 获取用户文化评分
+func (p *Client) GetCulturalList(input dto.CulturalListInput) (dto.CulturalListRes, error) {
+	u := p.PizzaConf.BaseUri + "/api/v1/cultural/list"
+	var output dto.CulturalListRes
+	err := httpclient.Post(u, p.Conf, input, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}

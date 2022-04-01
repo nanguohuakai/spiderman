@@ -92,9 +92,9 @@ type DeptListRes struct {
 }
 
 type DeptListWithPageRes struct {
-	Code int                 `json:"code"`
-	Msg  string              `json:"msg,omitempty"`
-	Data *[]DeptListWithPage `json:"data,omitempty"`
+	Code int              `json:"code"`
+	Msg  string           `json:"msg,omitempty"`
+	Data DeptListWithPage `json:"data,omitempty"`
 }
 
 type DeptListWithPage struct {
@@ -123,13 +123,31 @@ type HrpsGrListRes struct {
 }
 
 type HrpsRes struct {
-	Code int            `json:"code"`
-	Msg  string         `json:"msg,omitempty"`
+	Code int      `json:"code"`
+	Msg  string   `json:"msg,omitempty"`
 	Data *OrgItem `json:"data,omitempty"`
 }
 
 type HrpsListRes struct {
+	Code int       `json:"code"`
+	Msg  string    `json:"msg,omitempty"`
+	Data []OrgItem `json:"data,omitempty"`
+}
+
+type CulturalListRes struct {
 	Code int            `json:"code"`
 	Msg  string         `json:"msg,omitempty"`
-	Data []OrgItem `json:"data,omitempty"`
+	Data []CulturalItem `json:"data,omitempty"`
+}
+
+type ProjectUsersRes struct {
+	Code int              `json:"code"`
+	Msg  string           `json:"msg,omitempty"`
+	Data []ProjectGeneral `json:"data,omitempty"`
+}
+
+type ProjectListWithPageRes struct {
+	Code int                   `json:"code"`
+	Msg  string                `json:"msg,omitempty"`
+	Data ProjectListWithPage `json:"data,omitempty"`
 }
