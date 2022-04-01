@@ -71,3 +71,9 @@ type DeptListInputWithPage struct {
 	TermFiltersOps  []TermFiltersOps  `json:"term_filter_ops"`
 	ScopeFiltersOps []ScopeFiltersOps `json:"scope_filter_ops"`
 }
+
+type HrpsInput struct {
+	Workcode  string `json:"workcode"`
+	StartDate string `json:"start_date"` //开始日期 2006-01-02
+	EndDate   string `json:"end_date"`   //结束日期 2006-01-02
+}

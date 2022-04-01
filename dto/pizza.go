@@ -92,8 +92,8 @@ type DeptListRes struct {
 }
 
 type DeptListWithPageRes struct {
-	Code int         `json:"code"`
-	Msg  string      `json:"msg,omitempty"`
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg,omitempty"`
 	Data *[]DeptListWithPage `json:"data,omitempty"`
 }
 
@@ -102,4 +102,34 @@ type DeptListWithPage struct {
 	PageSize int        `json:"pageSize"`
 	Total    int64      `json:"total"`
 	List     []DeptInfo `json:"list"`
+}
+
+type DeptEmployeCountRes struct {
+	Code int           `json:"code"`
+	Msg  string        `json:"msg,omitempty"`
+	Data EmployeeCount `json:"data,omitempty"`
+}
+
+type HrpsGrRes struct {
+	Code int           `json:"code"`
+	Msg  string        `json:"msg,omitempty"`
+	Data *BehaviorItem `json:"data,omitempty"`
+}
+
+type HrpsGrListRes struct {
+	Code int            `json:"code"`
+	Msg  string         `json:"msg,omitempty"`
+	Data []BehaviorItem `json:"data,omitempty"`
+}
+
+type HrpsRes struct {
+	Code int            `json:"code"`
+	Msg  string         `json:"msg,omitempty"`
+	Data *OrgItem `json:"data,omitempty"`
+}
+
+type HrpsListRes struct {
+	Code int            `json:"code"`
+	Msg  string         `json:"msg,omitempty"`
+	Data []OrgItem `json:"data,omitempty"`
 }

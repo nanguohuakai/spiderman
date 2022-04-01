@@ -22,14 +22,23 @@ type PizzaInterface interface {
 	GetRewardList(workcode string, input dto.RewardInput) (dto.RewardListRes, error)                      //GetRewardList 获取员工奖惩信息
 	GetDeptList(input dto.DeptListInput) (dto.DeptListRes, error)                                         //GetDeptList 获取部门信息 (不支持分页）
 	GetDeptListWithPage(input dto.DeptListInputWithPage) (dto.DeptListWithPageRes, error)                 //GetDeptListWithPage 获取部门信息 (支持分页）
+	GetDeptEmployeeCount(deptId string) (dto.DeptEmployeCountRes, error)                                  //GetDeptEmployeeCount 获取部门人数
 	GetProjectList(viewerWorkcode string, viewedWorkcode string) (dto.ProjectListRes, error)              //GetProjectList 获取项目列表
 
-	SyncEsChangeData() (dto.PizzaResponse, error)   //SyncEsChangeData 同步工作数据到es
-	SyncEsExpData() (dto.PizzaResponse, error)      //SyncEsExpData 同步 experience_list 表数据到 es
-	SyncEsEduData() (dto.PizzaResponse, error)      //SyncEsEduData 同步教育信息到es
-	SyncEsEmployeeData() (dto.PizzaResponse, error) //SyncEsEmployeeData 同步用户信息到es
-	SyncEsRewardsData() (dto.PizzaResponse, error)  //SyncEsRewardsData 同步用户奖惩信息到es
-	SyncEsKpiData() (dto.PizzaResponse, error)      //SyncEsKpiData 同步用户奖惩信息到es
+	GetHrPsGr(input dto.HrpsInput) (dto.HrpsGrRes, error)         //GetHrPsGr 个人行为数据
+	GetHrPsGrList(input dto.HrpsInput) (dto.HrpsGrListRes, error) //GetHrPsGrList 个人行为月度数据
+	GetHrPs(input dto.HrpsInput) (dto.HrpsRes, error)             //GetHrPs 组织健康、组织氛围
+	GetHrPsList(input dto.HrpsInput) (dto.HrpsListRes, error)     //GetHrPsList 组织健康、组织氛围 月度数据
+
+	SyncEsChangeData() (dto.PizzaResponse, error)    //SyncEsChangeData 同步工作数据到es
+	SyncEsExpData() (dto.PizzaResponse, error)       //SyncEsExpData 同步 experience_list 表数据到 es
+	SyncEsEduData() (dto.PizzaResponse, error)       //SyncEsEduData 同步教育信息到es
+	SyncEsEmployeeData() (dto.PizzaResponse, error)  //SyncEsEmployeeData 同步用户信息到es
+	SyncEsRewardsData() (dto.PizzaResponse, error)   //SyncEsRewardsData 同步用户奖惩信息到es
+	SyncEsKpiData() (dto.PizzaResponse, error)       //SyncEsKpiData 同步用户奖惩信息到es
+	SyncEsDeptData() (dto.PizzaResponse, error)      //SyncEsDeptData 同步部门信息到es
+	SyncEsPmAbilityData() (dto.PizzaResponse, error) //SyncEsPmAbilityData 同步pm-ability信息到es
+	SyncEsCulturalData() (dto.PizzaResponse, error)  //SyncEsCulturalData 同步文化评分信息到es
 }
 
 type Client struct {

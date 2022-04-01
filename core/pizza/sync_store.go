@@ -53,3 +53,18 @@ func (p *Client) SyncEsRewardsData() (dto.PizzaResponse, error) {
 func (p *Client) SyncEsKpiData() (dto.PizzaResponse, error) {
 	return syncResponse(p, getSyncUrl(p, "/api/v1/kpi/job/es"))
 }
+
+//SyncEsDeptData 同步部门信息到es
+func (p *Client) SyncEsDeptData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/dept/job/es"))
+}
+
+//SyncEsPmAbilityData 同步pm-ability信息到es
+func (p *Client) SyncEsPmAbilityData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/project/pm-ability/job/es"))
+}
+
+//SyncEsCulturalData 同步文化评分信息到es
+func (p *Client) SyncEsCulturalData() (dto.PizzaResponse, error) {
+	return syncResponse(p, getSyncUrl(p, "/api/v1/cultural/job/es"))
+}
