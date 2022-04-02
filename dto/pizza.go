@@ -147,7 +147,68 @@ type ProjectUsersRes struct {
 }
 
 type ProjectListWithPageRes struct {
-	Code int                   `json:"code"`
-	Msg  string                `json:"msg,omitempty"`
+	Code int                 `json:"code"`
+	Msg  string              `json:"msg,omitempty"`
 	Data ProjectListWithPage `json:"data,omitempty"`
+}
+
+type FamilyRes struct {
+	Code int          `json:"code"`
+	Msg  string       `json:"msg,omitempty"`
+	Data []FamilyItem `json:"data,omitempty"`
+}
+
+type DimissionListRes struct {
+	Code int             `json:"code"`
+	Msg  string          `json:"msg,omitempty"`
+	Data []DimissionInfo `json:"data,omitempty"`
+}
+
+type PromotionListRes struct {
+	Code int                  `json:"code"`
+	Msg  string               `json:"msg,omitempty"`
+	Data []DeptPromotionsInfo `json:"data,omitempty"`
+}
+
+type LeadershipsListRes struct {
+	Code int               `json:"code"`
+	Msg  string            `json:"msg,omitempty"`
+	Data []LeadershipsInfo `json:"data,omitempty"`
+}
+
+type EhrChangesRes struct {
+	Code int             `json:"code"`
+	Msg  string          `json:"msg,omitempty"`
+	Data []EhrChangeItem `json:"data,omitempty"`
+}
+
+type EhrChangeWithPageRes struct {
+	Code int               `json:"code"`
+	Msg  string            `json:"msg,omitempty"`
+	Data EhrChangeWithPage `json:"data,omitempty"`
+}
+
+type EhrChangeWithPage struct {
+	Page     int             `json:"page"`
+	PageSize int             `json:"pageSize"`
+	Total    int64           `json:"total"`
+	List     []EhrChangeItem `json:"list"`
+}
+
+type BuildListRes struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg,omitempty"`
+	Data []BuildList `json:"data,omitempty"`
+}
+
+type ProjectAwardRes struct {
+	Code int         `json:"code"`
+	Msg  string      `json:"msg,omitempty"`
+	Data []AwardItem `json:"data,omitempty"`
+}
+
+type DottedLineWithPageRes struct {
+	Code int                  `json:"code"`
+	Msg  string               `json:"msg,omitempty"`
+	Data []DottedLineWithPage `json:"data,omitempty"`
 }
