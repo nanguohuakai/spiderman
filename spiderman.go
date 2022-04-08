@@ -4,6 +4,7 @@ package spiderman
 import (
 	"errors"
 	"github.com/nanguohuakai/spiderman/core/alert"
+	"github.com/nanguohuakai/spiderman/core/gohr"
 	"github.com/nanguohuakai/spiderman/core/pizza"
 	"github.com/nanguohuakai/spiderman/core/schedule"
 	"github.com/nanguohuakai/spiderman/core/sso"
@@ -16,6 +17,7 @@ type Spiderman interface {
 	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)             //Pizza pizza服务
 	Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error) //Schedule 定时任务调度服务
 	Sso(conf dto.SsoConf) (sso.SsoInterface, error)                     //Sso sso服务
+	GoHr(conf dto.GoHrConf) (gohr.GoHrInterface, error)                 //GoHr gohr服务
 }
 
 type SpidermanClient struct {
@@ -82,4 +84,12 @@ func (receiver *SpidermanClient) Schedule(conf dto.ScheduleConf) (schedule.Sched
 		return nil, errors.New("ScheduleConf 配置信息缺失")
 	}
 	return schedule.NewClient(receiver.AppConf, conf), nil
+}
+
+//GoHr store GoHr service
+func (receiver *SpidermanClient) GoHr(conf dto.GoHrConf) (gohr.GoHrInterface, error) {
+	if conf.BaseUri == "" {
+		return nil, errors.New("ScheduleConf 配置信息缺失")
+	}
+	return gohr.NewGoHrClient(receiver.AppConf, conf), nil
 }
