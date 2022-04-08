@@ -41,3 +41,27 @@ type JobSeqDataRes struct {
 	Msg  string     `json:"msg,omitempty"`
 	Data JobSeqData `json:"data,omitempty"`
 }
+
+type JobSubDataRes struct {
+	Code int        `json:"code"`
+	Msg  string     `json:"msg,omitempty"`
+	Data JobSubData `json:"data,omitempty"`
+}
+
+type QuitDataRes struct {
+	Code int      `json:"code"`
+	Msg  string   `json:"msg,omitempty"`
+	Data QuitData `json:"data,omitempty"`
+}
+
+type TalDataRes struct {
+	Code int     `json:"code"`
+	Msg  string  `json:"msg,omitempty"`
+	Data TalData `json:"data,omitempty"`
+}
+
+type OpsScheduleGoHrRes struct {
+	Code int         `json:"errcode"`
+	Msg  string      `json:"errmsg"`
+	Data interface{} `json:"data"`
+}

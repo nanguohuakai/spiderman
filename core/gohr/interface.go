@@ -13,6 +13,11 @@ type GoHrInterface interface {
 
 	GetJobChannel(input dto.JobChannelInput) (dto.JobChannelDataRes, error)
 	GetJobc(input dto.JobcInput) (dto.JobcDataRes, error)
+	GetJobSub(input dto.JobSubInput) (dto.JobSubDataRes, error)
+	GetQuitList(input dto.QuitOrTalInput) (dto.QuitDataRes, error)
+
+	ScheduleCreate(input dto.ScheduleCreateOrUpdateInput) (dto.OpsScheduleGoHrRes, error)
+	ScheduleUpdate(input dto.ScheduleCreateOrUpdateInput) (dto.OpsScheduleGoHrRes, error)
 }
 
 type Client struct {

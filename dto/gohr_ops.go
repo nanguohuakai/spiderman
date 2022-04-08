@@ -59,3 +59,31 @@ type jobSeqList struct {
 	Descr      string `json:"DESCR"`
 	DescrShort string `json:"DESCRSHORT"`
 }
+
+type JobSubData struct {
+	Total       int          `json:"total"`
+	CurrentPage int          `json:"current_page"`
+	PerPage     int          `json:"per_page"`
+	List        []jobSubList `json:"list"`
+}
+
+type jobSubList struct {
+	SubSeq     string `json:"T_SUB_SEQUENCE"`
+	Effdt      string `json:"EFFDT"`
+	EffStatus  string `json:"EFF_STATUS"`
+	Descr      string `json:"DESCR"`
+	DescrShort string `json:"DESCRSHORT"`
+}
+
+type QuitData struct {
+	EmplId        string `json:"EMPLID"`
+	Effdt         string `json:"EFFDT"`
+	IsPassiveQuit string `json:"IS_PASSIVE_QUIT"`
+	TerReason     string `json:"T_TER_REASON_HRBP"`
+}
+
+type TalData struct {
+	EmplId       string `json:"EMPLID"`
+	Effdt        string `json:"EFFDT"`
+	IsFullToTall string `json:"IS_TFU_TO_TAL"`
+}
