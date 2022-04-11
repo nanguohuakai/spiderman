@@ -17,6 +17,10 @@ type PizzaConf struct {
 	BaseUri string `json:"base_uri"` //pizza 服务域名
 }
 
+type GoHrConf struct {
+	BaseUri string `json:"base_uri"` //gohr 服务域名
+}
+
 type AlertConf struct {
 	BaseUri string `json:"base_uri"` //base url alert 服务域名
 	Level   string `json:"level"`    //日志级别限制 >= level

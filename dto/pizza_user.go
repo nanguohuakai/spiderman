@@ -199,3 +199,34 @@ type CulturalItem struct {
 	CreatedAt   string `json:"created_at"`
 	UpdatedAt   string `json:"updated_at"`
 }
+
+type FamilyItem struct {
+	ID             uint64 `json:"id"`
+	Workcode       string `json:"workcode"`        // 员工工号
+	DependentBenef string `json:"dependent_benef"` // 序号
+	Birthdate      string `json:"birthdate"`       // 生日
+	Name           string `json:"name"`            // 姓名
+	Relation       string `json:"relation"`        // 关系
+	RelationDescr  string `json:"relationDescr"`   // 关系描述
+	Sex            string `json:"sex"`             // 性别
+	Occupation     string `json:"occupation"`      // 工作
+	Phone          string `json:"phone"`           // 电话
+
+}
+
+type DottedLineWithPage struct {
+	CurrentPage int          `json:"current_page"`
+	LastPage    int          `json:"last_page"`
+	Total       int64        `json:"total"`
+	Data        []DottedLine `json:"data"`
+}
+
+type DottedLine struct {
+	EmplID         string `json:"empl_id"`          // 员工id
+	EmplRcd        string `json:"empl_rcd"`         // 员工岗位序号
+	Name           string `json:"name"`             // 姓名
+	DeptID         string `json:"dept_id"`          // 部门id
+	DeptDescr      string `json:"dept_descr"`       // 部门名称
+	ReportEmplID   string `json:"report_empl_id"`   // 汇报对象员工ID
+	ReportEmplName string `json:"report_empl_name"` // 汇报对象员工的姓名
+}

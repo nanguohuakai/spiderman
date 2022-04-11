@@ -57,3 +57,11 @@ type UserBasicInfo struct {
 	Workcode string `json:"workcode"` // 工号
 	Username string `json:"username"` // 姓名
 }
+
+type AwardItem struct {
+	ID       uint64 `json:"id"`
+	Workcode string `json:"workcode"`
+	TypeID   uint64 `json:"type_id"`
+	Count    uint64 `json:"count"`
+	Type     string `json:"name"`
+}

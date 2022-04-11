@@ -21,17 +21,30 @@ type PizzaInterface interface {
 	GetKpiList(workcode string) (dto.KpiListRes, error)                                                   //GetKpiList 员工的绩效列表
 	GetRewardList(workcode string, input dto.RewardInput) (dto.RewardListRes, error)                      //GetRewardList 获取员工奖惩信息
 	GetCulturalList(input dto.CulturalListInput) (dto.CulturalListRes, error)                             //GetCulturalList 获取用户文化评分
-	GetDeptList(input dto.DeptListInput) (dto.DeptListRes, error)                                         //GetDeptList 获取部门信息 (不支持分页）
-	GetDeptListWithPage(input dto.DeptListInputWithPage) (dto.DeptListWithPageRes, error)                 //GetDeptListWithPage 获取部门信息 (支持分页）
-	GetDeptEmployeeCount(deptId string) (dto.DeptEmployeCountRes, error)                                  //GetDeptEmployeeCount 获取部门人数
-	GetProjectList(viewerWorkcode string, viewedWorkcode string) (dto.ProjectListRes, error)              //GetProjectList 获取项目列表
-	GetLanYunProjectUser(input dto.UserProjectInput) (dto.ProjectUsersRes, error)                         //GetLanYunProjectUser 获取蓝云项目
-	GetLanYunProjectList(input dto.ProjectListInput) (dto.ProjectListWithPageRes, error)
+	GetFamilyList(workcode string) (dto.FamilyRes, error)                                                 //GetFamilyList 获取家庭信息
+	GetDottedLineList(input dto.PizzaWorkcodesInput) (dto.DottedLineWithPageRes, error)                   //GetDottedLineList 获取虚线上级信息
+
+	GetDeptList(input dto.DeptListInput) (dto.DeptListRes, error)                         //GetDeptList 获取部门信息 (不支持分页）
+	GetDeptListWithPage(input dto.DeptListInputWithPage) (dto.DeptListWithPageRes, error) //GetDeptListWithPage 获取部门信息 (支持分页）
+	GetDeptEmployeeCount(deptId string) (dto.DeptEmployeCountRes, error)                  //GetDeptEmployeeCount 获取部门人数
+
+	GetProjectList(viewerWorkcode string, viewedWorkcode string) (dto.ProjectListRes, error) //GetProjectList 获取项目列表
+	GetLanYunProjectUser(input dto.UserProjectInput) (dto.ProjectUsersRes, error)            //GetLanYunProjectUser 获取蓝云项目
+	GetLanYunProjectList(input dto.ProjectListInput) (dto.ProjectListWithPageRes, error)     //GetLanYunProjectList 获取蓝云项目列表
+	GetProjectAward(page int, pageSize int) (dto.ProjectAwardRes, error)                     //GetProjectAward 获取奖项列表（人才同步使用，其他系统暂不要使用）
+
+	GetBuildList(input dto.BuildListInput) (dto.BuildListRes, error) //GetBuildList 获取楼宇信息
 
 	GetHrPsGr(input dto.HrpsInput) (dto.HrpsGrRes, error)         //GetHrPsGr 个人行为数据
 	GetHrPsGrList(input dto.HrpsInput) (dto.HrpsGrListRes, error) //GetHrPsGrList 个人行为月度数据
 	GetHrPs(input dto.HrpsInput) (dto.HrpsRes, error)             //GetHrPs 组织健康、组织氛围
 	GetHrPsList(input dto.HrpsInput) (dto.HrpsListRes, error)     //GetHrPsList 组织健康、组织氛围 月度数据
+
+	GetDimissionList(input dto.PaginationParams) (dto.DimissionListRes, error)                   //GetDimissionList 获取部门离职历史信息
+	GetPromotionsList(input dto.PaginationParams) (dto.PromotionListRes, error)                  //GetPromotionsList 获取部门晋升历史信息
+	GetLeaderList(input dto.PaginationParams) (dto.LeadershipsListRes, error)                    //GetLeaderList 获取部门领导历史信息
+	GetEhrChanges(input dto.EmployeeListInput) (dto.EhrChangesRes, error)                        //GetEhrChanges 获取履历列表 (不支持分页)
+	GetEhrChangesWithPage(input dto.EmployeeListInputWithPage) (dto.EhrChangeWithPageRes, error) //GetEhrChangesWithPage 获取履历列表  (支持分页)
 
 	SyncEsChangeData() (dto.PizzaResponse, error)      //SyncEsChangeData 同步工作数据到es
 	SyncEsExpData() (dto.PizzaResponse, error)         //SyncEsExpData 同步 experience_list 表数据到 es

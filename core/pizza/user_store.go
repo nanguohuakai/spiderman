@@ -237,3 +237,32 @@ func (p *Client) GetCulturalList(input dto.CulturalListInput) (dto.CulturalListR
 	}
 	return output, nil
 }
+
+//GetFamilyList 获取家庭信息
+func (p *Client) GetFamilyList(workcode string) (dto.FamilyRes, error) {
+	u := p.PizzaConf.BaseUri + "/api/v1/family/list/" + workcode
+	var output dto.FamilyRes
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
+
+//GetDottedLineList 获取虚线上级信息
+func (p *Client) GetDottedLineList(input dto.PizzaWorkcodesInput) (dto.DottedLineWithPageRes, error) {
+	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri,  "/api/v1/report/dotted-line", input)
+	var output dto.DottedLineWithPageRes
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}

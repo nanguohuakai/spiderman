@@ -31,7 +31,6 @@ func (p *Client) GetProjectList(viewerWorkcode string, viewedWorkcode string) (d
 	return output, nil
 }
 
-
 //GetLanYunProjectUser 获取蓝云项目
 func (p *Client) GetLanYunProjectUser(input dto.UserProjectInput) (dto.ProjectUsersRes, error) {
 	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, "/api/v1/project/user/general", input)
@@ -48,7 +47,6 @@ func (p *Client) GetLanYunProjectUser(input dto.UserProjectInput) (dto.ProjectUs
 	return output, nil
 }
 
-
 func (p *Client) GetLanYunProjectList(input dto.ProjectListInput) (dto.ProjectListWithPageRes, error) {
 	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, "/api/v1/project/user/project/list", input)
 	var output dto.ProjectListWithPageRes
@@ -61,5 +59,27 @@ func (p *Client) GetLanYunProjectList(input dto.ProjectListInput) (dto.ProjectLi
 		return output, errors.New(output.Msg)
 	}
 
+	return output, nil
+}
+
+
+//GetProjectAward 获取奖项列表（人才同步使用，其他系统暂不要使用）
+func (p *Client) GetProjectAward(page int, pageSize int) (dto.ProjectAwardRes, error) {
+	var params = dto.PaginationParams{
+		Page:     page,
+		PageSize: pageSize,
+	}
+	path := "/api/v1/project/awards-list"
+	u := httpclient.HttpBuildQuery(p.PizzaConf.BaseUri, path, params)
+
+	var output dto.ProjectAwardRes
+
+	err := httpclient.Get(u, p.Conf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
 	return output, nil
 }

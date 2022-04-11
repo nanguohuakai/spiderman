@@ -6,6 +6,12 @@ type PizzaInput struct {
 	PageSize int    `form:"pageSize" json:"pageSize" binding:"required_with=Page"`
 }
 
+type PizzaWorkcodesInput struct {
+	Workcode []string `form:"workcode[],omitempty" json:"workcode,omitempty"`
+	Page     int      `form:"page" json:"page" binding:"required_with=PageSize"`
+	PageSize int      `form:"pageSize" json:"pageSize" binding:"required_with=Page"`
+}
+
 type PaginationParams struct {
 	Page     int `json:"page,omitempty" url:"page,omitempty"`
 	PageSize int `json:"pageSize,omitempty" url:"pageSize,omitempty"`
@@ -98,4 +104,13 @@ type ProjectListInput struct {
 	EndDate   string `url:"end_date" json:"end_date"`
 	Page      int    `url:"page" json:"page" binding:"required_with=PageSize"`
 	PageSize  int    `url:"pageSize" json:"pageSize" binding:"required_with=Page"`
+}
+
+type BuildListInput struct {
+	CountryCode  string `json:"country_code"`
+	ProvinceCode string `json:"province_code"`
+	CityCode     string `json:"city_code"`
+	DistrictCode string `json:"district_code"`
+	BuildingCode string `json:"building_code"`
+	FloorCode    string `json:"floor_code"`
 }
