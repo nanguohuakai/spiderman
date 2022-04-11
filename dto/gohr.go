@@ -77,3 +77,9 @@ type Report360DataRes struct {
 	Msg  string        `json:"errmsg"`
 	Data Report360Data `json:"data"`
 }
+
+type SecretRes struct {
+	Code int         `json:"errcode"`
+	Msg  string      `json:"errmsg"`
+	Data interface{} `json:"data"`
+}

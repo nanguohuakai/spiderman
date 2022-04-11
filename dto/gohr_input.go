@@ -114,3 +114,16 @@ type GoHrInput struct {
 	Page     int    `url:"page" json:"page" binding:"required_with=PageSize"`
 	PageSize int    `url:"per_page" json:"per_page" binding:"required_with=Page"`
 }
+
+type SecretDeptInput struct {
+	WorkCode  string `url:"workcode" json:"workcode"`
+	BeginTime string `url:"beginTime" json:"beginTime"`
+	EndTime   string `url:"endTime" json:"endTime"`
+}
+
+type SecretInput struct {
+	WorkCode  string `url:"workcode" json:"workcode"`
+	DeptId    string `url:"deptId" json:"deptId"`
+	BeginTime string `url:"beginTime" json:"beginTime"`
+	EndTime   string `url:"endTime" json:"endTime"`
+}
