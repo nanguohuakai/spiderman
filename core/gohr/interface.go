@@ -10,6 +10,7 @@ type GoHrInterface interface {
 	GetRecordJournal(input dto.RecordJournalUserInput) (dto.RecordJournalYachRes, error)
 	GetHonorUserInfo(input dto.HonorUserInfoInput) (dto.HonorUserInfoRes, error)
 	GetYachWeekReport(input dto.WeekReportUserInput) (dto.WeekReportYachRes, error)
+	GetReportListFrom360(workcode string, page int, pageSize int) (dto.Report360DataRes, error)
 
 	GetJobChannel(input dto.JobChannelInput) (dto.JobChannelDataRes, error)
 	GetJobc(input dto.JobcInput) (dto.JobcDataRes, error)
@@ -18,6 +19,9 @@ type GoHrInterface interface {
 
 	ScheduleCreate(input dto.ScheduleCreateOrUpdateInput) (dto.OpsScheduleGoHrRes, error)
 	ScheduleUpdate(input dto.ScheduleCreateOrUpdateInput) (dto.OpsScheduleGoHrRes, error)
+	ScheduleCancel(input dto.ScheduleCancelInput) (dto.OpsScheduleGoHrRes, error)
+	ScheduleInvite(input dto.ScheduleInviteInput) (dto.OpsScheduleGoHrRes, error)
+	ScheduleList24(input dto.ScheduleLisInput) (dto.OpsScheduleLisRes, error)
 }
 
 type Client struct {

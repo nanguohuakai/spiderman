@@ -131,3 +131,31 @@ func (p *Client) ScheduleCancel(input dto.ScheduleCancelInput) (dto.OpsScheduleG
 	}
 	return output, nil
 }
+
+//ScheduleInvite 加入日程
+func (p *Client) ScheduleInvite(input dto.ScheduleInviteInput) (dto.OpsScheduleGoHrRes, error) {
+	u := p.GoHrConf.BaseUri + "/api/v1/ops/schedule/invite"
+	var output dto.OpsScheduleGoHrRes
+	err := httpclient.Post(u, p.AppConf, input, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}
+
+//ScheduleList24 忙闲
+func (p *Client) ScheduleList24(input dto.ScheduleLisInput) (dto.OpsScheduleLisRes, error) {
+	u := p.GoHrConf.BaseUri + "/api/v1/ops/schedule/list/24"
+	var output dto.OpsScheduleLisRes
+	err := httpclient.Post(u, p.AppConf, input, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}

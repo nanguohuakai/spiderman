@@ -65,3 +65,15 @@ type OpsScheduleGoHrRes struct {
 	Msg  string      `json:"errmsg"`
 	Data interface{} `json:"data"`
 }
+
+type OpsScheduleLisRes struct {
+	Code int                    `json:"errcode"`
+	Msg  string                 `json:"errmsg"`
+	Data map[string]interface{} `json:"data"`
+}
+
+type Report360DataRes struct {
+	Code int           `json:"errcode"`
+	Msg  string        `json:"errmsg"`
+	Data Report360Data `json:"data"`
+}

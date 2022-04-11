@@ -79,3 +79,11 @@ type WeekReportData struct {
 	ZanNumber     int     `json:"zan_number"`
 	CommentNumber int     `json:"comment_number"`
 }
+
+type Report360Data struct {
+	CurrentPage int         `json:"current_page"`
+	LastPage    int         `json:"last_page"`
+	PerPage     int         `json:"per_page"`
+	Total       int         `json:"total"`
+	Data        interface{} `json:"data"`
+}

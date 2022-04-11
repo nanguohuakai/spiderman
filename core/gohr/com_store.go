@@ -65,3 +65,22 @@ func (c *Client) GetYachWeekReport(input dto.WeekReportUserInput) (dto.WeekRepor
 	}
 	return output, nil
 }
+
+//GetReportListFrom360 获取汇报线 360
+func (c *Client) GetReportListFrom360(workcode string, page int, pageSize int) (dto.Report360DataRes, error) {
+	var input = dto.GoHrInput{
+		Workcode: workcode,
+		Page:     page,
+		PageSize: pageSize,
+	}
+	u := httpclient.HttpBuildQuery(c.GoHrConf.BaseUri, "/api/v1/360/report", input)
+	var output dto.Report360DataRes
+	err := httpclient.Get(u, c.AppConf, &output)
+	if err != nil {
+		return output, err
+	}
+	if output.Code != 0 {
+		return output, errors.New(output.Msg)
+	}
+	return output, nil
+}

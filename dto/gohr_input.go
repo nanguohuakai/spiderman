@@ -91,5 +91,26 @@ type ScheduleCancelInput struct {
 	Timestamp string `json:"timestamp"`
 	Workcode  string `json:"workcode,omitempty"`
 	Reason    string `json:"reason,omitempty"`
-	Ticket    string `json:"ticket"`
+}
+
+type ScheduleInviteInput struct {
+	AppId       string `json:"app_id"`
+	BizId       string `json:"biz_id"`
+	Participant string `json:"participant"`
+	Timestamp   string `json:"timestamp"`
+	Workcode    string `json:"workcode,omitempty"`
+}
+
+type ScheduleLisInput struct {
+	AppId       string   `json:"app_id"`
+	Workcode    []string `json:"workcode"`
+	Participant string   `json:"participant"`
+	StartDate   string   `json:"start_date"`
+	EndDate     string   `json:"end_date"`
+}
+
+type GoHrInput struct {
+	Workcode string `url:"workcode" json:"workcode" binding:"required"`
+	Page     int    `url:"page" json:"page" binding:"required_with=PageSize"`
+	PageSize int    `url:"per_page" json:"per_page" binding:"required_with=Page"`
 }
