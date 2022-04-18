@@ -49,10 +49,10 @@ func (c *Client) BeforeSecret(input dto.SecretInput) (dto.SecretRes, error) {
 }
 
 //DecodeSecret 解密
-func (p *Client) DecodeSecret(input []map[string]string) (dto.SecretRes, error) {
-	u := p.GoHrConf.BaseUri + "/api/v1/secret/decode"
+func (c *Client) DecodeSecret(input []map[string]string) (dto.SecretRes, error) {
+	u := c.GoHrConf.BaseUri + "/api/v1/secret/decode"
 	var output dto.SecretRes
-	err := httpclient.Post(u, p.AppConf, input, &output)
+	err := httpclient.Post(u, c.AppConf, input, &output)
 	if err != nil {
 		return output, err
 	}
