@@ -210,5 +210,5 @@ type ProjectAwardRes struct {
 type DottedLineWithPageRes struct {
 	Code int                  `json:"code"`
 	Msg  string               `json:"msg,omitempty"`
-	Data []DottedLineWithPage `json:"data,omitempty"`
+	Data DottedLineWithPage   `json:"data,omitempty"`
 }
