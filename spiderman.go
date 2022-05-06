@@ -11,19 +11,6 @@ import (
 	"github.com/nanguohuakai/spiderman/dto"
 )
 
-//Spiderman support pipelining using the Pizza, Sso, Schedule and Alert methods
-type Spiderman interface {
-	Alert(conf dto.AlertConf) (alert.AlertInterface, error)             //Alert 消息服务
-	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)             //Pizza pizza服务
-	Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error) //Schedule 定时任务调度服务
-	Sso(conf dto.SsoConf) (sso.SsoInterface, error)                     //Sso sso服务
-	GoHr(conf dto.GoHrConf) (gohr.GoHrInterface, error)                 //GoHr gohr服务
-}
-
-type SpidermanClient struct {
-	AppConf dto.AppConf
-}
-
 //The NewSpiderman interface is the primary interface for working with Spiderman
 func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
 	//verify app conf
@@ -37,6 +24,19 @@ func NewSpiderman(conf dto.AppConf) (Spiderman, error) {
 	}
 	return uc, nil
 
+}
+
+//Spiderman support pipelining using the Pizza, Sso, Schedule and Alert methods
+type Spiderman interface {
+	Alert(conf dto.AlertConf) (alert.AlertInterface, error)             //Alert 消息服务
+	Pizza(conf dto.PizzaConf) (pizza.PizzaInterface, error)             //Pizza pizza服务
+	Schedule(conf dto.ScheduleConf) (schedule.ScheduleInterface, error) //Schedule 定时任务调度服务
+	Sso(conf dto.SsoConf) (sso.SsoInterface, error)                     //Sso sso服务
+	GoHr(conf dto.GoHrConf) (gohr.GoHrInterface, error)                 //GoHr gohr服务
+}
+
+type SpidermanClient struct {
+	AppConf dto.AppConf
 }
 
 //Pizza store pizza service

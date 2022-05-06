@@ -7,9 +7,9 @@ type PizzaInput struct {
 }
 
 type PizzaWorkcodesInput struct {
-	Workcode []string `form:"workcode[],omitempty" json:"workcode,omitempty"`
-	Page     int      `form:"page" json:"page" binding:"required_with=PageSize"`
-	PageSize int      `form:"pageSize" json:"pageSize" binding:"required_with=Page"`
+	Workcode []string `form:"workcode[],omitempty" json:"workcode,omitempty" url:"workcode[],omitempty"`
+	Page     int      `form:"page" json:"page" url:"page" binding:"required_with=PageSize"`
+	PageSize int      `form:"pageSize" json:"pageSize" url:"pageSize" binding:"required_with=Page"`
 }
 
 type PaginationParams struct {
